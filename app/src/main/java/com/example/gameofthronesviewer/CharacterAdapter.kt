@@ -10,7 +10,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-class CharacterAdapter(private val context: Context, private val characterList: List<Pair<String, Triple<String, String, String>>>) : RecyclerView.Adapter<CharacterAdapter.ViewHolder>() {
+class CharacterAdapter(private val context: Context, private val characterList: List<Character>) : RecyclerView.Adapter<CharacterAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.character_item, parent, false)
@@ -18,8 +18,8 @@ class CharacterAdapter(private val context: Context, private val characterList: 
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val (imageUrl, characterInfo) = characterList[position]
-        holder.bind(imageUrl, characterInfo)
+        val character = characterList[position]
+        holder.bind(character)
 
         holder.imageView.setOnClickListener {
             Toast.makeText(holder.itemView.context, "Character at position $position clicked", Toast.LENGTH_SHORT).show()
@@ -36,14 +36,16 @@ class CharacterAdapter(private val context: Context, private val characterList: 
         private val tvTitle: TextView = itemView.findViewById(R.id.tvTitleCharacter)
         private val tvFamily: TextView = itemView.findViewById(R.id.tvFamilyCharacter)
 
-        fun bind(imageUrl: String, characterInfo: Triple<String, String, String>) {
+        fun bind(character: Character) {
             Glide.with(context)
-                .load(imageUrl)
-                .centerCrop()
+                .load(character.imageUrl)
+                .fitCenter()
                 .into(imageView)
-            tvFullName.text = characterInfo.first
-            tvTitle.text = characterInfo.second
-            tvFamily.text = characterInfo.third
+
+            tvFullName.text = character.fullName
+            tvTitle.text = character.title
+            tvFamily.text = character.family
         }
     }
 }
+

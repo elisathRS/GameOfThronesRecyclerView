@@ -12,7 +12,7 @@ import okhttp3.Headers
 
 class MainActivity : AppCompatActivity() {
  private lateinit var characterAdapter: CharacterAdapter
- private val characterList = mutableListOf<Pair<String, Triple<String, String, String>>>()
+ private val characterList = mutableListOf<Character>()
 
  override fun onCreate(savedInstanceState: Bundle?) {
   super.onCreate(savedInstanceState)
@@ -31,23 +31,23 @@ class MainActivity : AppCompatActivity() {
   client["https://thronesapi.com/api/v2/Characters", object : JsonHttpResponseHandler() {
    override fun onSuccess(statusCode: Int, headers: Headers, json: JsonHttpResponseHandler.JSON) {
     val jsonArray = json.jsonArray
-    val newCharacterList = mutableListOf<Pair<String, Triple<String, String, String>>>()
+    val newCharacterList = mutableListOf<Character>()
     for (i in 0 until jsonArray.length()) {
      val character = jsonArray.getJSONObject(i)
      val imageUrl = character.getString("imageUrl")
      val fullName = character.getString("fullName")
      val title = character.getString("title")
      val family = character.getString("family")
-     newCharacterList.add(Pair(imageUrl, Triple(fullName, title, family)))
+     newCharacterList.add(Character(imageUrl, fullName, title, family))
     }
     Log.d("Character List", "Successfully fetched character list.")
     characterList.addAll(newCharacterList)
     characterAdapter.notifyItemRangeInserted(characterList.size - newCharacterList.size, newCharacterList.size)
 
     // Preload images using Glide
-    for ((imageUrl, _) in newCharacterList) {
+    for (character in newCharacterList) {
      Glide.with(this@MainActivity)
-      .load(imageUrl)
+      .load(character.imageUrl)
       .fitCenter()
       .preload() // Preload images to improve scrolling performance
     }
@@ -63,5 +63,4 @@ class MainActivity : AppCompatActivity() {
    }
   }]
  }
-
 }
