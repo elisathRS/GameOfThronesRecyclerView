@@ -24,29 +24,31 @@
             android:id="@+id/tvFullNameCharacter"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:textSize="18sp"
+            android:fontFamily="@font/beth_ellen"
+            android:textAppearance="@style/TextAppearance.Character"
             android:textStyle="bold"
-            android:padding="8dp"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageViewCharacter" />
 
         <TextView
             android:id="@+id/tvTitleCharacter"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:textAppearance="@style/TextAppearance.Character"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvFullNameCharacter" />
 
         <TextView
             android:id="@+id/tvFamilyCharacter"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            app:layout_constraintStart_toStartOf="parent"
+            android:fontFamily="@font/unifrakturmaguntia"
+            android:textSize="18sp"
+            android:textColor="#A9A9A9"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvTitleCharacter" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

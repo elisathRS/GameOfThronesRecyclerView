@@ -3,7 +3,15 @@
     <style name="Base.Theme.GameOfThronesViewer" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:fontFamily">@font/unifrakturmaguntia</item>
     </style>
 
     <style name="Theme.GameOfThronesViewer" parent="Base.Theme.GameOfThronesViewer" />
+
+    <style name="TextAppearance.Character" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">#808080</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
 </resources>
